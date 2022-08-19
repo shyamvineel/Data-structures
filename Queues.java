@@ -1,17 +1,12 @@
 import javax.management.QueryEval;
+import dataStructures.Queue;
 
 public class Queues {
-    class Queue{
-        int front;
-        int rear;
-        int capacity;
-        int[] arrray;
-    }
     Queue que;
     void creatQueue(int capacity){
         que = new Queue();
         que.capacity = capacity;
-        que.arrray = new int[que.capacity];
+        que.array = new int[que.capacity];
         que.front = que.rear = -1;
         return;
     }
@@ -27,7 +22,7 @@ public class Queues {
         else{
             que.rear = que.rear+1;
         }
-        que.arrray[que.rear] = data;
+        que.array[que.rear] = data;
         return;
     }
     int deQueue(){
@@ -37,7 +32,7 @@ public class Queues {
             return -1;
         }
         else{
-            val = que.arrray[que.front];
+            val = que.array[que.front];
             que.front = que.front+1;
         }
         return val;
@@ -49,7 +44,7 @@ public class Queues {
             return -1;
         }
         else{
-            return que.arrray[que.front];
+            return que.array[que.front];
         }
     }
     void deleteQ(){
@@ -63,23 +58,25 @@ public class Queues {
         }
         int i =que.front;
         while(i<=que.rear){
-            System.out.println(que.arrray[i]);
+            System.out.println(que.array[i]);
             i++;
         }
     }
     public static void main(String[] args){
         Queues Q = new Queues();
-        Q.creatQueue(10);
+        Q.creatQueue(5);
         Q.enQueue(10);
         Q.enQueue(12);
         Q.enQueue(13);
+        Q.enQueue(15);
+        Q.enQueue(17);
         Q.show();
-        int top = Q.peek();
-        System.out.println("element at front of queue is :"+top);
-        System.out.println("element deleted: "+Q.deQueue());
-        System.out.println("element deleted: "+Q.deQueue());
-        Q.deleteQ();
+        System.out.println("\n");
+        Q.deQueue();
+        Q.deQueue();
+        Q.enQueue(10);
         Q.show();
+       
 
     }
 }

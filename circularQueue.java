@@ -1,12 +1,9 @@
+import dataStructures.Queue;
 public class circularQueue {
-    class queue{
-        int capacity;
-        int front,rear;
-        int size;
-        int array[];
-    }
-    queue que = new queue();
+    
+    Queue que;
     void creatQueue(int capacity){
+        que = new Queue();
         if(capacity <=0){
             System.out.println("sorry cannot create queue");
             return;
@@ -57,6 +54,7 @@ public class circularQueue {
             que.size = 0;
         }
         else{
+            
             que.front = (que.front+1)%que.capacity;
             que.size-=1;
         }
@@ -67,13 +65,15 @@ public class circularQueue {
             System.out.println("empty");
             return;
         }
-        int i = que.front;
-        while(i<=que.rear){
-            System.out.println(" "+que.array[i]);
-            i++;
+        int i=que.front;
+        do{
+            System.out.println(que.array[i]);
+            i = (i+1)%que.capacity;
         }
+        while(i!=que.front);
         return;
     }
+
     public static void main(String[] args){
         circularQueue cr = new circularQueue();
         cr.creatQueue(5);
@@ -82,11 +82,13 @@ public class circularQueue {
         cr.enQueue(30);
         cr.enQueue(40);
         cr.enQueue(50);
-        cr.deQueue();
-        cr.deQueue();
         cr.show();
-        System.out.println(cr.isEmpty());
-        System.out.println(cr.size());
+        System.out.println("\n");
+        cr.deQueue();
+        cr.deQueue();
+        
         System.out.println(cr.isFull());
+        
+        cr.show();
     }
 }
